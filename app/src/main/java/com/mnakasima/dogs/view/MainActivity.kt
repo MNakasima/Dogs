@@ -1,7 +1,8 @@
-package com.mnakasima.dogs
+package com.mnakasima.dogs.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.mnakasima.dogs.R
 
 class MainActivity : AppCompatActivity() {
 
