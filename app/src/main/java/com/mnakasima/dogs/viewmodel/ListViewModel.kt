@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mnakasima.dogs.model.DogBreed
 
-class ListViewModel():ViewModel(){
+class ListViewModel:ViewModel(){
 
     val dogs = MutableLiveData<List<DogBreed>>()
     val dogsLoadError = MutableLiveData<Boolean>()
