@@ -37,7 +37,7 @@ class ListViewModel:ViewModel(){
                     override fun onSuccess(dogList: List<DogBreed>) {
                         dogs.value =  dogList
                         dogsLoadError.value = false
-                        loading.value = true
+                        loading.value = false
                     }
 
                     override fun onError(e: Throwable) {
