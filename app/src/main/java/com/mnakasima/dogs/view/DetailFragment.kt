@@ -12,6 +12,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.mnakasima.dogs.R
+import com.mnakasima.dogs.util.getProgressDrawable
+import com.mnakasima.dogs.util.loadImage
 import com.mnakasima.dogs.viewmodel.DetailViewModel
 import kotlinx.android.synthetic.main.fragment_detail.*
 
@@ -34,12 +36,12 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
-        viewModel.fetch()
-
         arguments?.let {
             dogUuid = DetailFragmentArgs.fromBundle(it).dogUuid
         }
+
+        viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
+        viewModel.fetch(dogUuid)
 
         observerViewModel()
 
@@ -53,6 +55,9 @@ class DetailFragment : Fragment() {
                 dogPurpose.text = dog.breedFor
                 dogTemperament.text = dog.temperament
                 dogLifespan.text = dog.lifeSpan
+                context?.let {
+                    dogImage.loadImage(dog.imageUrl, getProgressDrawable(it))
+                }
             }
         })
 
