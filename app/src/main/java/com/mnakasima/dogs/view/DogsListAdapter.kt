@@ -14,7 +14,7 @@ import com.mnakasima.dogs.util.getProgressDrawable
 import com.mnakasima.dogs.util.loadImage
 import kotlinx.android.synthetic.main.item_dog.view.*
 
-class DogsListAdapter(val dogsList: ArrayList<DogBreed>) : RecyclerView.Adapter<DogsListAdapter.DogViewHolder>() {
+class DogsListAdapter(val dogsList: ArrayList<DogBreed>) : RecyclerView.Adapter<DogsListAdapter.DogViewHolder>(), DogClickListener {
 
     fun updateDogList(newDogsList: List<DogBreed>){
         dogsList.clear()
@@ -37,6 +37,7 @@ class DogsListAdapter(val dogsList: ArrayList<DogBreed>) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: DogViewHolder, position: Int) {
 
         holder.view.dog = dogsList[position]
+        holder.view.listener = this
         /*
         holder.view.name.text = dogsList[position].dogBreed
         holder.view.lifespan.text = dogsList[position].lifeSpan
@@ -48,6 +49,14 @@ class DogsListAdapter(val dogsList: ArrayList<DogBreed>) : RecyclerView.Adapter<
         }
         holder.view.imageView.loadImage(dogsList[position].imageUrl, getProgressDrawable(holder.view.imageView.context))
         */
+    }
+
+    override fun onDogClicked(view: View) {
+        val uuid = view.dogId.text.toString().toInt()
+
+        val action = ListFragmentDirections.actionDetailFragment()
+        action.dogUuid = uuid
+        Navigation.findNavController(view).navigate(action)
     }
 
     class DogViewHolder(var view: ItemDogBinding) : RecyclerView.ViewHolder(view.root)
