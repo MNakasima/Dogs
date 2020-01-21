@@ -37,3 +37,5 @@ data class DogBreed(
     @PrimaryKey(autoGenerate = true)
     var uuid: Int = 0
 }
+
+class DogPallete(var color : Int)
