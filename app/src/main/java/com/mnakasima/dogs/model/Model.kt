@@ -38,4 +38,10 @@ data class DogBreed(
     var uuid: Int = 0
 }
 
-class DogPallete(var color : Int)
+data class DogPallete(var color : Int)
+
+data class SmsInfo(
+    var to: String?,
+    var text:String?,
+    var imageUrl: String?
+)
